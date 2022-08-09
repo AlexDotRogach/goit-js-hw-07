@@ -5,6 +5,7 @@ const $gallery = document.querySelector(".gallery");
 
 let galleryItemsArr = [...galleryItems].map((item) => {
   return `
+  <li>
     <a class="gallery__item" href="${item.original}">
       <img
         class=gallery__image
@@ -12,6 +13,7 @@ let galleryItemsArr = [...galleryItems].map((item) => {
         alt=${item.description}
       />
     </a>
+  </li>
   `;
 });
 

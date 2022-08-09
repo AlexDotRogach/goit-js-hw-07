@@ -39,4 +39,12 @@ function imageClick(e) {
       instance.close();
     }
   });
+  $gallery.addEventListener("keydown", sliderEscClose);
+
+  function sliderEscClose(e) {
+    if (e.code === "Escape") {
+      instance.close();
+      $gallery.removeEventListener("keydown", sliderEscClose);
+    }
+  }
 }
