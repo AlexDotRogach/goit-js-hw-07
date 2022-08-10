@@ -27,24 +27,26 @@ function imageClick(e) {
 
   if (e.target.nodeName !== "IMG") return;
 
-  const instance = basicLightbox.create(`
+  $gallery.addEventListener("keydown", sliderEscClose);
+
+  const instance = basicLightbox.create(
+    `
     <img src="${e.target.dataset.source}" width="800" height="600">
-  `);
+  `,
+    {
+      onClose: () => {
+        $gallery.removeEventListener("keydown", sliderEscClose);
+      },
+    }
+  );
 
   instance.show();
 
   // additional
-  $gallery.addEventListener("keydown", (e) => {
-    if (e.code === "Escape") {
-      instance.close();
-    }
-  });
-  $gallery.addEventListener("keydown", sliderEscClose);
 
   function sliderEscClose(e) {
     if (e.code === "Escape") {
       instance.close();
-      $gallery.removeEventListener("keydown", sliderEscClose);
     }
   }
 }
